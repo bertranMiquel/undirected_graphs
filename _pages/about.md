@@ -23,8 +23,8 @@ This blogpost track is directly inspired by the amazing [ICLR blogpost track](ht
 
 # Key Dates
 
-- **Submission deadline**: Monday, 6 April, 23:59 AoE
+- **Submission deadline**: April, 15th (AoE)
   - Any modifications to your blog post, via a pull request on github.
-- **Notification of acceptance**: Monday, 13 April, 23:59 AoE
-- **Camera-ready merge**: Monday, 13 April, 23:59 AoE
+- **Notification of acceptance**: April, 20th (AoE)
+<!-- - **Camera-ready merge**: Monday, 13 April, 23:59 AoE -->
   

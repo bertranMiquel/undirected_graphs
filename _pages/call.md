@@ -15,26 +15,26 @@ nav_order: 2
 - [Scope and spirit](#scope-and-spirit)
 - [Themes of interest](#themes-of-interest)
 
-GRaM is about taking that geometry seriously!
+<!-- GRaM is about taking that geometry seriously! -->
 
 For the second edition of the GRaM workshop, we invite blog posts that explore how geometric thinking can ground machine learning models: how respecting structure can lead to better representations, more interpretable models, and sharper theoretical insight.
-
-<!-- ## Key Dates
-
-- **Submission deadline**: Friday, 26 February, 9:00 AoE
-  - Any modifications to your blog post, via a pull request on github.
-- **Notification of acceptance**: Friday, 11 March, 9:00 AoE
-- **Camera-ready merge**: Friday, 11 March, 9:00 AoE -->
 
 
 ## Why blog posts?
 
-They are a space to:
+<!-- They are a space to:
 - explain ideas that do not yet fit neatly into full theorem–experiment pipelines,
 - reflect on why a method works (or fails), not just that it works,
 - connect distant strands of theory, practice, and intuition,
 - articulate open problems, negative results, or conceptual frameworks,
-- teach, synthesize, speculate, and provoke!!!!
+- teach, synthesize, speculate, and provoke!!!! -->
+They offer a space to:
+- share ideas that may not yet fit neatly into full theorem–experiment pipelines,
+- reflect on why a method works (or fails), beyond just reporting that it does,
+- draw connections between distant strands of theory, practice, and intuition,
+- surface open problems, negative results, or emerging conceptual frameworks,
+- teach, synthesize, and spark new conversations.
+
 
 Scientific progress does not happen only through finalized results. It also happens through clear explanations, honest reflections, and shared intuition. Blog posts foster a more communal kind of science—and we want to make room for that.
 

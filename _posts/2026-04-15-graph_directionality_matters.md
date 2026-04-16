@@ -89,7 +89,7 @@ This persistent design choice can be attributed to several factors:
 
 * Some datasets are naturally undirected (e.g., co-authorship and co-purchase networks) <d-cite key="shchur2018pitfalls"></d-cite>
 * Others are artificially symmetrized, despite having an underlying directed structure (e.g., citation graphs)
-* Even recent works, such as <d-cite key="liang2025towards"></d-cite>, explicitly enforce bidirectionality to isolate specific phenomena (e.g., long-range dependencies) while controlling for directionality
+* Even recent works, such as <d-cite key="liang2025towards"></d-cite>, explicitly enforce bidirectionality to isolate specific phenomena (e.g., long-range dependencies).
 
 In contrast, many heterophilic datasets (e.g., Cornell, Texas, Wisconsin, Chameleon, Squirrel) are typically used in their **original directed** or asymmetric form, as their underlying relationships (e.g., hyperlinks or interactions) are inherently directional <d-cite key="pei2020geom-gcn"></d-cite>. As reported in Table 1, these datasets exhibit significantly lower bidirectionality ratios, reflecting a high degree of asymmetry.
 
@@ -99,7 +99,6 @@ Taken together, these observations raise a fundamental question:
 
 > Are GNNs failing because of **heterophily**, or because of **directionality**?
 
----
 
 <div class="table-caption">
 Table 1. Bidirectional properties of graph datasets. We report the dataset type (homophilic vs heterophilic), whether the graph is effectively bidirectional, and the bidirectionality ratio (fraction of edges with a reverse counterpart).
@@ -123,7 +122,6 @@ Table 1. Bidirectional properties of graph datasets. We report the dataset type 
 | texas                   | heterophilic | False            | 0.1942                 |
 | wisconsin               | heterophilic | False            | 0.1964                 |
 
----
 
 To answer this question, we perform a systematic study across widely used homophilic and heterophilic benchmarks. Specifically, we consider homophilic datasets such as Cora, CiteSeer, PubMed, Amazon, OGBN-Arxiv, and Coauthor, and heterophilic datasets including Cornell, Texas, Wisconsin, Chameleon, and Squirrel.
 

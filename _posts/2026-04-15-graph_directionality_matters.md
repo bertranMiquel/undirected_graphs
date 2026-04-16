@@ -142,7 +142,7 @@ We explicitly control for directionality by applying two complementary transform
    * structural centrality (e.g., PageRank, degree)
    * domain-specific proxies (e.g., popularity, seniority)
 
-   Each undirected edge is replaced by a **single directed edge**, ensuring controlled asymmetry (see implementation details in Appendix X).
+   Each undirected edge is replaced by a **single directed edge**, ensuring controlled asymmetry while preserving the underlying graph structure.
 
 After applying these transformations, we evaluate standard GNN architectures (GCN, GAT, GraphSAGE) and their directed counterparts across multiple random seeds to ensure robustness.
 
@@ -153,23 +153,25 @@ After applying these transformations, we evaluate standard GNN architectures (GC
 We evaluate the performance of GNNs of the datasets in their original form, as well as after applying the bidirectionalization and directed graph construction transformations. This allows us to isolate the effects of directionality from those of homophily.
 As in <d-cite key="rossi2024edge"></d-cite>, we use the same hyperparameters for all models to ensure a fair comparison, taking the datasets and their standard splits.
 
-{% include figure.liquid path="assets/img/2026-04-15-graph_directionality_matters/heterophilic_baseline_gnn_directed.pdf" caption="Performance of GNNs on heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements." %}
-<div class="caption">
+![**Figure 1.** Performance of GNNs on heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.](assets/img/2026-04-15-graph_directionality_matters/heterophilic_baseline_gnn_directed.pdf)
+<!-- {% include figure.liquid path="assets/img/2026-04-15-graph_directionality_matters/heterophilic_baseline_gnn_directed.pdf" %} -->
+<!-- <div class="caption">
 Figure 1. Performance of GNNs on heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.
-</div>
+</div> -->
 
-{% include figure.liquid path="assets/img/2026-04-15-graph_directionality_matters/homophilic_baseline_gnn_directed.pdf" caption="Performance of GNNs on homophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements." %}
-<div class="caption">
+![**Figure 2.** Performance of GNNs on homophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.](assets/img/2026-04-15-graph_directionality_matters/homophilic_baseline_gnn_directed.pdf)
+<!-- {% include figure.liquid path="assets/img/2026-04-15-graph_directionality_matters/homophilic_baseline_gnn_directed.pdf" %} -->
+<!-- <div class="caption">
 Figure 2. Performance of GNNs on homophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.
-</div>
+</div> -->
 
 In Figure 1, we observe how the performance of directed GNNs (DirGCN, DirGAT, DirSAGE) significantly outperforms standard GNNs (GCN, GAT, GraphSAGE) on heterophilic datasets in their original directed form. While in Figure 2, we see how directed GNNs have almost no difference in performance compared to standard GNNs on homophilic datasets, when the graphs is bidirectional. However, results on OGBN-Arxiv show a significant improvement when using directed GNNs.
 
 This suggests that the poor performance of standard GNNs on these benchmarks is largely driven by their inability to handle directed graphs, rather than solely by label inconsistency.
 
-
-{% include figure.liquid path="assets/img/2026-04-15-graph_directionality_matters/heterophilic_bidirected_gnn_vs_directed.pdf" caption="Performance of GNNs on bidirected heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT) perform poorly, while directed GNNs (DirGCN, DirGAT) show significant improvements." %}
-<div class="caption">
+![**Figure 3.** Performance of GNNs on bidirected heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT) perform poorly, while directed GNNs (DirGCN, DirGAT) show significant improvements. ](assets/img/2026-04-15-graph_directionality_matters/heterophilic_bidirected_gnn_vs_directed.pdf)
+<!-- {% include figure.liquid path="assets/img/2026-04-15-graph_directionality_matters/heterophilic_bidirected_gnn_vs_directed.pdf"%} -->
+<!-- <div class="caption">
 Figure 3. Performance of GNNs on bidirected heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT) perform poorly, while directed GNNs (DirGCN, DirGAT) show significant improvements.
-</div>
+</div> -->
 

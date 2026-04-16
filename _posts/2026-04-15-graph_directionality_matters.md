@@ -168,6 +168,8 @@ Indeed, we can see how the homophility changes less than 0.1 in all cases, when 
 </div>
 
 
+
+
 # **Discussion**
 
 In this work, our results suggest that directionality may influence the performance of GNNs, when directed graphs are used. We show that applying a simple bidirectionalization transformation to directed graphs can significantly improve the performance of standard GNNs,

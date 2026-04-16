@@ -60,57 +60,47 @@ _styles: >
 
 # **Introduction**
 
-Graph Neural Networks (GNNs) have achieved strong performance on canonical node classification benchmarks.  However, a widely accepted narrative is that GNNs struggle in **heterophilic graphs**, where neighboring nodes do not share labels. 
-This has motivated a growing body of work studying how to improve GNNs in heterophilic settings, with a focus on architectural modifications and new aggregation schemes. <d-cite key="kipf2016semi", key="velivckovic2017graph", key="rossi2024edge"></d-cite>
+<!-- difference between homophilic and heterophilic datasets -->
+Graph Neural Networks (GNNs) have achieved strong performance on canonical node classification benchmarks.  However, a widely accepted narrative is that GNNs struggle in **heterophilic graphs**, where neighboring nodes do not share labels, while obtaining strong results in **homophilic graphs**, where neighbors tend to share labels. 
+This has motivated a growing body of work studying how to improve GNNs in heterophilic settings, with a focus on architectural modifications and new aggregation schemes. <d-cite key="kipf2016semi"></d-cite>, <d-cite key="velivckovic2017graph"></d-cite>, <d-cite key="rossi2024edge"></d-cite>
 
-Yet, an often-overlooked aspect of these benchmarks is **graph directionality**.
+The mainly difference between homophilic and heterophilic datasets, by definition, is the degree of label similarity among neighboring nodes. However, an often overlooked aspect is that many heterophilic datasets are also **directed**, while homophilic datasets are typically **undirected**.
 
-## A historical bias toward bidirectional graphs
+Historically, many of the most widely used homophilic datasets such as Cora, CiteSeer, and PubMed, were originally constructed as **undirected graphs**. In early work (e.g., <d-cite key="kipf2016semi"></d-cite>), citation edges were explicitly **symmetrized** to produce a **symmetric adjacency matrix**, enabling the use of spectral graph convolutions. This was done to simplify the problem and ensure compatibility with the proposed GCN architecture, which relies on symmetric normalization of the adjacency matrix.
+As a consequence, modern libraries (e.g., PyTorch Geometric) store these graphs as **bidirectional edge lists**, even when the underlying relation (citation) is inherently directed.
 
-Many of the most widely used homophilic datasets—such as Cora, CiteSeer, and PubMed—were originally constructed as **undirected graphs**. In early work (e.g., Kipf & Welling, 2017), citation edges were explicitly **symmetrized** to produce a **symmetric adjacency matrix**, enabling the use of spectral graph convolutions. As a consequence, modern libraries (e.g., PyTorch Geometric) store these graphs as **bidirectional edge lists**, even when the underlying relation (citation) is inherently directed.
+Despite new models being designed to handle non-symmetric adjacency matrices, numerous benchmarks continue to use **bidirectional versions of homophilic datasets**. This design choice has persisted for several reasons:
 
-This design choice has persisted:
+* Some datasets are naturally undirected (e.g., co-authorship, co-purchase) <d-cite key="shchur2018pitfalls"></d-cite>
+* Others are **artificially symmetrized** despite having an underlying directed structure (e.g., citation graphs)
+* Even recent works, such as <d-cite key="liang2025towards"></d-cite>, deliberately enforce **bidirectionality** to isolate other factors (e.g., long-range dependencies) while controlling for directionality.
 
-* Some datasets are naturally undirected (e.g., co-authorship, co-purchase)
-* Others are **artificially symmetrized for compatibility and stability**
-* Even recent works such as Towards Quantifying Long-Range Dependencies in Graph Learning deliberately enforce **bidirectionality** to isolate topological effects like oversquashing
+Meanwhile, many heterophilic datasets (e.g., Cornell, Texas, Wisconsin, Chameleon, Squirrel) are often used in their **original directed form**, without symmetrization. This is partly because their relations (e.g., web links, social interactions) are inherently directed. <d-cite key="pei2020geom-gcn"></d-cite>
+Several datasets reported bad performance in different architectures, relating it to the heterophilic nature of the graph, analysing different graph features, but without controlling for the directionality of the graph. <d-cite key="zhu2020beyond"></d-cite>, <d-cite key="ma2021homophily"></d-cite>
 
-This leads to an implicit assumption:
-
-> GNNs are expected to operate on **symmetric adjacency structures**, and benchmarks are constructed accordingly.
-
-## Revisiting the role of heterophily
+In <d-cite key="rossi2024edge"></d-cite>, they report that the performance of GNNs on heterophilic datasets is significantly worse than on homophilic datasets. However, they observe how directed GNNs (DirGNNs) can significantly improve performance on heterophilic datasets, but still underperform compared to their performance on homophilic datasets. This suggests that while directionality is a factor, it may not be the only one contributing to the performance gap. 
 
 This raises a fundamental question:
 
 > Are GNNs failing because of **heterophily**, or because of **directionality**?
 
-To investigate this, we perform a systematic study across both homophilic and heterophilic datasets.
+To investigate this, we perform a systematic study across both most popular homophilic and heterophilic datasets. For homophilic datasets, we consider Cora, CiteSeer, PubMed, Amazon, OGBN-Arxiv, and Coauthor. For heterophilic datasets, we consider Cornell, Texas, Wisconsin, Chameleon, Squirrel, and others.
 
-* **Homophilic datasets** (traditionally bidirectional):
-  Cora, CiteSeer, PubMed, Amazon, Coauthor
-
-* **Heterophilic datasets** (often asymmetric):
-  Cornell, Texas, Wisconsin, Chameleon, Squirrel, and others
-
-We apply two complementary transformations:
-
-### Bidirectionalizing heterophilic graphs
-
-We convert directed or asymmetric graphs into **fully bidirectional graphs** by explicitly adding reverse edges:
+In this study, we want to analyse how directionality affects GNN performance no matter the initial nature of the datasets and explicitly control for directionality by applying two complementary transformations to the graphs:
+1. **Bidirectionalizing graphs.** We convert directed or asymmetric graphs into fully bidirectional graphs by explicitly adding reverse edges:
 [
 (u, v) \rightarrow (u, v), (v, u)
 ]
 
-### Introducing directionality into homophilic graphs
-
-We construct directed versions of homophilic graphs using principled orientation strategies based on:
+1. **Introducing directionality** into undirected graphs. We construct directed versions of homophilic graphs using principled orientation strategies based on:
 
 * temporal metadata (citation graphs: newer → older)
 * structural centrality (PageRank, degree)
 * domain-specific proxies (popularity, seniority)
 
 Each undirected edge is replaced by a **single directed edge**, ensuring controlled asymmetry (implementation details in ).
+
+Once the transformations are applied, we evaluate the performance of standard GNNs (GCN, GAT, GraphSAGE) and their directed variants across multiple random seeds to ensure robustness.
 
 ---
 

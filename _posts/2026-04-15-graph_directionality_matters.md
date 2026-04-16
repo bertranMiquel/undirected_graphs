@@ -152,14 +152,18 @@ We evaluate the performance of GNNs of the datasets in their original form, as w
 As in <d-cite key="rossi2024edge"></d-cite>, we use the same hyperparameters for all models to ensure a fair comparison, taking the datasets and their standard splits.
 
 {% include figure.liquid
-  src="assets/img/2026-04-15-graph_directionality_matters/heterophilic_baseline_gnn_vs_directed.png"
-  caption="Performance of GNNs on heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements."
+  src="assets/img/2026-04-15-graph_directionality_matters/heterophilic_baseline_gnn_vs_directed.png" class="img-fluid"
 %}
+<div class="caption" align="center">
+  <b>Figure 1.</b> Performance of GNNs on heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.
+</div>
 
 {% include figure.liquid
-  src="assets/img/2026-04-15-graph_directionality_matters/homophilic_baseline_gnn_vs_directed.png"
-  caption="Performance of GNNs on homophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements."
+  src="assets/img/2026-04-15-graph_directionality_matters/homophilic_baseline_gnn_vs_directed.png" class="img-fluid"
 %}
+<div class="caption" align="center">
+  <b>Figure 2.</b> Performance of GNNs on homophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.
+</div>
 
 <!-- [!**Figure 1.** Performance of GNNs on heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) perform poorly, while directed GNNs (DirGCN, DirGAT, DirSAGE) show significant improvements.](assets/img/2026-04-15-graph_directionality_matters/heterophilic_baseline_gnn_vs_directed.png)
 

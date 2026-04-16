@@ -1,8 +1,8 @@
 ---
 layout: distill
-title: On the Role of Directionality in Graph Neural Networks
+title: The Role of Directionality in Graph Neural Networks
 description: We investigate how graph directionality may influence GNN performance across homophilic and heterophilic benchmarks, suggesting it could be an underexplored factor.
-date: 2026-01-02
+date: 2026-04-16
 future: true
 htmlwidgets: true
 hidden: true
@@ -158,16 +158,20 @@ When applying the bidirectionalization transformation of directed graphs, we obs
   <b>Figure 3.</b> Performance of GNNs on bidirected heterophilic datasets in their original directed form. Standard GNNs (GCN, GAT, SAGE) and directed GNNs (DirGCN, DirGAT, DirSAGE) perform comparably after applying the bidirectionality transformation.
 </div>
 
-Indeed, we can see how the homophility changes less than 0.1 in all cases, when applying this bidirectional transformation (Figure 4). However, the performance of GNNs significantly improves.
+We compute the homophily of the original directed graphs and the bidirectionalized versions to understand whether the performance improvement can be attributed to changes in homophily.
+
+$$
+h_i = \frac{1}{\deg(i)} \sum_{j \in \mathcal{N}(i)} \mathbf{1}\left[y_i = y_j\right]
+$$
+
+In Figure 4, we can see how the homophily changes less than 0.1 in all cases, when applying this bidirectional transformation . However, the performance of GNNs significantly improves.
 
 {% include figure.liquid
-  path="assets/img/2026-04-15-graph_directionality_matters/homophility_changes.png" class="img-fluid"
+  path="assets/img/2026-04-15-graph_directionality_matters/homophily_changes.png" class="img-fluid"
 %}
 <div class="caption" align="center">
   <b>Figure 4.</b> Homophility delta after applying the bidirectionalization transformation.
 </div>
-
-
 
 
 # **Discussion**
@@ -178,4 +182,3 @@ while reducing the performance gap between GNNs and directed GNNs.
 This may indicate that current GNN architectures have limitations when handling directionality. Then,two main several points for future research are worth considering:
 - GNNs struggle with directionality because of the way message-passing is designed. An interesting direction for future research is to modify vanilla GNN architectures to better handle directionality.
 - More diverse datasets are needed to allow for a more comprehensive evaluation of GNN performance across different regimes of homophily and directionality. This would enable us to better understand the interplay between these factors and their impact on GNN performance. There is a lack of homophilic datasets with directionality, and heterophilic datasets without directionality, which makes it difficult to disentangle the effects of homophily and directionality on GNN performance. Directionality is a fundamental property of many real-world graphs that should be taken into account when designing new benchmarks and evaluating GNN performance.
-
